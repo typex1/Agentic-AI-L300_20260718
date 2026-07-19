@@ -6,7 +6,12 @@ This environment has limited AWS permissions. When creating solutions, only use 
 
 All AWS operations must target **us-east-1**.
 
-## Allowed Actions
+## Foundation Model
+
+- **Model ID:** `amazon.nova-pro-v1:0`
+- **Inference Profile:** `us.amazon.nova-pro-v1:0`
+
+## Allowed Bedrock Runtime Actions
 
 | Action | Service |
 |--------|---------|
@@ -15,20 +20,50 @@ All AWS operations must target **us-east-1**.
 | `InvokeModel` | bedrock-runtime |
 | `InvokeModelWithResponseStream` | bedrock-runtime |
 
-## Denied Actions
+## Allowed Bedrock Control-Plane Actions (Guardrails Only)
 
 | Action | Service |
 |--------|---------|
-| `ListFoundationModels` | bedrock |
-| `GetFoundationModel` | bedrock |
+| `CreateGuardrail` | bedrock |
 | `ListGuardrails` | bedrock |
-| `GetGuardrail` | bedrock |
+| `ApplyGuardrail` | bedrock |
+| `CreateGuardrailVersion` | bedrock |
+| `DeleteGuardrail` | bedrock |
+| `UpdateGuardrail` | bedrock |
+| `TagResource` | bedrock |
+| `UntagResource` | bedrock |
+
+## Allowed Other Services
+
+| Service | Actions |
+|---------|---------|
+| S3 | PutObject, CreateBucket, DeleteObject, DeleteObjectVersion, DeleteBucket, PutEncryptionConfiguration, PutLifecycleConfiguration, PutBucketVersioning, PutBucketPublicAccessBlock |
+| IAM | PassRole (to codebuild.amazonaws.com and bedrock-agentcore.amazonaws.com only) |
+| ECR | CreateRepository, DeleteRepository, PutLifecyclePolicy, SetRepositoryPolicy, InitiateLayerUpload, UploadLayerPart, CompleteLayerUpload, PutImage |
+| CodeBuild | CreateProject, StartBuild, UpdateProject, ListProjects, DeleteProject, BatchGetProjects |
+| Cognito | CreateUserPool, CreateUserPoolClient, CreateUserPoolDomain, CreateResourceServer, AdminCreateUser, AdminSetUserPassword, AdminDeleteUser, UpdateUserPoolClient, DeleteUserPoolClient, DeleteUserPool |
+| Secrets Manager | CreateSecret, GetSecretValue, DeleteSecret, PutSecretValue, UpdateSecret, TagResource, UntagResource |
+| Bedrock AgentCore | CreateAgentRuntime, DeleteAgentRuntime, CreateAgentRuntimeEndpoint, DeleteAgentRuntimeEndpoint, InvokeAgentRuntime, CreateMemory, CreateEvent, DeleteMemory, CreateWorkloadIdentity, DeleteWorkloadIdentity, UploadWorkloadIdentity |
+| CloudWatch Logs | DeleteLogGroup |
+
+## Denied Actions
+
+| Action | Service | Notes |
+|--------|---------|-------|
+| `ListFoundationModels` | bedrock | Control-plane model listing is denied |
+| `GetFoundationModel` | bedrock | Control-plane model info is denied |
+| `GetGuardrail` | bedrock | Reading individual guardrail details is denied |
+| `InvokeModel` on `amazon.nova-lite-v1:0` | bedrock-runtime | Only nova-pro is permitted |
+
+## Additional Access
+
+- `arn:aws:iam::aws:policy/ReadOnlyAccess` is attached (broad read access to most services).
 
 ## Rules
 
-- Do not use Bedrock control-plane actions (bedrock:*). They are denied.
-- Only bedrock-runtime actions are permitted.
-- The available model is `amazon.nova-lite-v1:0`.
-- The Strands Agents framework works because it only uses `bedrock-runtime:Converse` / `ConverseStream`.
-- Do not attempt to list, describe, or manage foundation models or guardrails via the API.
-- IAM access is not available; do not attempt IAM operations.
+- The available model is `amazon.nova-pro-v1:0` (NOT nova-lite).
+- Both the direct model ID and the inference profile `us.amazon.nova-pro-v1:0` work.
+- Guardrail control-plane actions are permitted (create, list, update, delete, apply).
+- Do not attempt to list or describe foundation models via the API.
+- IAM management access is not available; do not attempt IAM operations beyond PassRole.
+- The Strands Agents framework works because it uses `bedrock-runtime:Converse` / `ConverseStream`.

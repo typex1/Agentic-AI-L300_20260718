@@ -5,6 +5,12 @@
       "args": ["strands-agents-mcp-server"],
       "disabled": false,
       "autoApprove": ["search_docs", "fetch_doc"]
-    }
+    },
+    "bedrock-agentcore-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.amazon-bedrock-agentcore-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      }
   }
 }

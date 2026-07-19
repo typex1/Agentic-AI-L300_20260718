@@ -1,0 +1,66 @@
+default_agent: personal_finance_agent
+agents:
+  personal_finance_agent:
+    name: personal_finance_agent
+    language: python
+    node_version: null
+    entrypoint: /home/ec2-user/environment/Agentic-AI-L300_20260718/examples/_agentcore_deploy/main.py
+    deployment_type: container
+    runtime_type: null
+    platform: linux/arm64
+    container_runtime: none
+    source_path: null
+    aws:
+      execution_role: arn:aws:iam::773954921456:role/AmazonBedrockAgentCoreSDKRuntime-us-east-1
+      execution_role_auto_create: false
+      account: '773954921456'
+      region: us-east-1
+      ecr_repository: 773954921456.dkr.ecr.us-east-1.amazonaws.com/bedrock-agentcore-personal_finance_agent
+      ecr_auto_create: false
+      s3_path: null
+      s3_auto_create: false
+      network_configuration:
+        network_mode: PUBLIC
+        network_mode_config: null
+      protocol_configuration:
+        server_protocol: HTTP
+      observability:
+        enabled: true
+      lifecycle_configuration:
+        idle_runtime_session_timeout: null
+        max_lifetime: null
+    bedrock_agentcore:
+      agent_id: personal_finance_agent-xWYrlPE1mW
+      agent_arn: arn:aws:bedrock-agentcore:us-east-1:773954921456:runtime/personal_finance_agent-xWYrlPE1mW
+      agent_session_id: null
+    codebuild:
+      project_name: bedrock-agentcore-personal_finance_agent-builder
+      execution_role: arn:aws:iam::773954921456:role/AmazonBedrockAgentCoreSDKCodeBuild-us-east-1-5d12c2867b
+      source_bucket: bedrock-agentcore-codebuild-sources-773954921456-us-east-1
+    memory:
+      mode: NO_MEMORY
+      memory_id: null
+      memory_arn: null
+      memory_name: null
+      event_expiry_days: 30
+      first_invoke_memory_check_done: false
+      was_created_by_toolkit: false
+    identity:
+      credential_providers: []
+      workload: null
+    aws_jwt:
+      enabled: false
+      audiences: []
+      signing_algorithm: ES384
+      issuer_url: null
+      duration_seconds: 300
+    authorizer_configuration:
+      customJWTAuthorizer:
+        allowedClients:
+        - 8thuiuo9gqi53j8e6g3jviq8p
+        discoveryUrl: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_4fCVVrtRV/.well-known/openid-configuration
+    request_header_configuration: null
+    oauth_configuration: null
+    api_key_env_var_name: null
+    api_key_credential_provider_name: null
+    is_generated_by_agentcore_create: false

@@ -14,6 +14,12 @@ kiro-cli login --use-device-flow
 # strands-shell is fetched on demand via `uvx strands-shell`
 ```
 
+## Optional: remove non-English language Juypter notebook versions
+
+```bash
+./1-remove-language-versions.sh
+```
+
 All example scripts are runnable from any working directory.
 
 ## Dependencies
