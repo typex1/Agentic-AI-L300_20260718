@@ -3,27 +3,24 @@
 #
 # Install with:  pip install -r requirements.txt
 
-# --- Core Strands Agents SDK (strands-agents/*, Task.py) ---
+# --- Core Strands Agents SDK ---
 strands-agents==1.45.0
-strands-agents-tools==0.8.2        # calculator, shell tools (demos 02, 04)
+strands-agents-tools==0.8.2        # calculator, shell tools
 
-# --- Red teaming / evaluation (strands-agents/09_red_teaming.py) ---
-strands-agents-evals==1.0.1
-
-# --- Web search tool (strands-agents/02_custom_tools.py, Task.py) ---
+# --- Web search tool (examples/1-*, examples/2-*) ---
 ddgs==9.14.4
 
-# --- Structured output demo uses Pydantic directly (strands-agents/03) ---
-pydantic==2.13.4
+# --- AgentCore Runtime deployment (examples/2-*) ---
+bedrock-agentcore==1.18.1
+bedrock-agentcore-starter-toolkit==0.3.10
+requests==2.34.2
 
-# --- AWS SDK, used directly by Model_permissions.py ---
+# --- AWS SDK ---
 boto3==1.43.39
 
-# --- Pydantic AI comparison example (pydantic-ai/01_basic_agent.py) ---
-# The [bedrock] extra adds Amazon Bedrock (Converse) support.
-pydantic-ai-slim[bedrock]==2.3.0
+# --- Structured output ---
+pydantic==2.13.4
 
-# --- NOT pip-installable (required by demos 07 and 09) ---
-# These are installed separately, not via pip:
-#   * uv / uvx  -> see 0-install.sh  (curl -LsSf https://astral.sh/uv/install.sh | sh)
-#   * strands-shell -> run on demand via `uvx strands-shell` (needs uvx on PATH)
+# --- NOT pip-installable (installed separately via 0-install.sh) ---
+# * uv / uvx  -> curl -LsSf https://astral.sh/uv/install.sh | sh
+#   Used by: MCP servers, strands-shell
