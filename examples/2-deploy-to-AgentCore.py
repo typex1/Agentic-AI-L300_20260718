@@ -50,6 +50,11 @@ AGENT_NAME = "personal_finance_agent"  # Must match IAM/ECR permissions in this 
 WORK_DIR = Path(__file__).resolve().parent / "_agentcore_deploy"
 WORK_DIR.mkdir(exist_ok=True)
 
+# Remove stale toolkit state from a previous run (possibly from another account).
+# A leftover agent_id makes launch() try UpdateAgentRuntime on a runtime that
+# does not exist here, which the lab IAM policy denies.
+(WORK_DIR / ".bedrock_agentcore.yaml").unlink(missing_ok=True)
+
 # ---------------------------------------------------------------------------
 # Step 1: Write main.py — the agent code that runs inside AgentCore
 # ---------------------------------------------------------------------------
