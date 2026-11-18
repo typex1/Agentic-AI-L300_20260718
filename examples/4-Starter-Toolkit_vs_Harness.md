@@ -54,6 +54,13 @@ See: `examples/2-deploy-to-AgentCore.py` and `examples/2-deploy-to-AgentCore.md`
 
 ## Harness — The Managed Alternative
 
+> **Not runnable in this lab.** The Harness snippets below are illustrative.
+> The lab IAM policy grants no `bedrock-agentcore:CreateHarness` or
+> `bedrock-agentcore:InvokeHarness`, so `create_harness` and `invoke_harness`
+> return `AccessDeniedException`. The `@aws/agentcore` CLI deploys through
+> CDK/CloudFormation, which the policy also doesn't allow (no CloudFormation
+> actions, no `iam:CreateRole`).
+
 ```
 You provide:        Configuration (model, system prompt, tools)
 
@@ -118,6 +125,8 @@ This lab uses **AgentCore Runtime** via the starter toolkit because:
 2. The lab is designed to teach how agents work under the hood
 3. Runtime gives students visibility into the full deployment pipeline
 
-The Harness approach would not work here because our custom `web_search` tool
-(using the `ddgs` Python library) requires custom code execution — something
-only Runtime supports.
+The Harness approach would not work here for two reasons:
+1. The lab IAM policy does not allow `CreateHarness`, `InvokeHarness`, or the
+   CloudFormation/IAM actions the `@aws/agentcore` CLI needs.
+2. Even with permissions, our custom `web_search` tool (using the `ddgs`
+   Python library) requires custom code execution, which only Runtime supports.
