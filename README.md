@@ -39,13 +39,13 @@ Pinned in [`requirements.txt`](requirements.txt):
 
 | Package | Version | Used by |
 |---------|---------|---------|
-| `strands-agents` | 1.45.0 | all examples |
-| `strands-agents-tools` | 0.8.2 | calculator / shell tools |
-| `ddgs` | 9.14.4 | web search tool (example 1, 2) |
-| `boto3` | 1.43.39 | AWS SDK |
-| `pydantic` | 2.13.4 | structured output |
-| `bedrock-agentcore` | 1.18.1 | AgentCore Memory client (example 3) |
-| `bedrock-agentcore-starter-toolkit` | 0.3.10 | AgentCore Runtime deployment (example 2) |
+| `strands-agents` | 1.65.0 | all examples |
+| `strands-agents-tools` | 0.9.0 | shell tool (calculator removed) |
+| `ddgs` | 9.16.1 | web search tool (example 1, 2) |
+| `boto3` | 1.44.5 | AWS SDK |
+| `pydantic` | 2.14.3 | structured output |
+| `bedrock-agentcore` | 1.26.0 | AgentCore Memory client (example 3) |
+| `bedrock-agentcore-starter-toolkit` | 0.3.14 | AgentCore Runtime deployment (example 2) |
 | `requests` | 2.34.2 | HTTP invocation of AgentCore endpoints |
 
 **Not pip-installable** (installed separately via `0-install.sh`):
