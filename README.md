@@ -4,7 +4,7 @@ Companion examples for the Agentic AI L300 lab. These scripts provide
 standalone, easy-to-follow demonstrations of Strands Agents concepts
 covered in the lab notebooks (`Task-1.ipynb`, `Task-2.ipynb`, `Task-3.ipynb`).
 
-## Kiro CLI installation
+## Installation
 
 ```bash
 git clone https://github.com/typex1/Agentic-AI-L300_20260718.git
@@ -19,12 +19,6 @@ source .venv/bin/activate
 pip install -r requirements.txt
 curl -fsSL https://cli.kiro.dev/install | bash
 kiro-cli login --use-device-flow
-```
-
-## Setup
-
-```bash
-./0-install.sh          # installs uv/uvx + Python dependencies from requirements.txt
 ```
 
 ## Examples
