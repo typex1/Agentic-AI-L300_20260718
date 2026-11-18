@@ -1,0 +1,15 @@
+20261030
+
+The zip file has to go in a specific place: unzip it in the root of an agentcore-samples checkout, the folder that contains 06-workshops/. Every path in the zip starts with 06-workshops/..., so it
+  overwrites the original files in place:
+  
+  cd /path/to/agentcore-samples
+  unzip -o lab1-modified-notebooks.zip
+  
+  The location matters for three reasons:
+  
+  - The helper file: each notebook finds lab_config.py by searching its own folder and the folders above it. If the notebooks aren't somewhere under the folder that holds lab_config.py, they fail with
+  an error.
+  - The supporting files: the notebooks also need everything the zip doesn't include, such as the agent data files, utils.py and the requirements.txt files I didn't change. So unzipping into an empty
+  folder isn't enough; it has to be a full checkout of the repo.
+  - The repo version: the files were changed starting from commit 00128f69. On a much newer or older checkout, overwriting may undo other changes in those files.
