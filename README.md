@@ -8,7 +8,15 @@ covered in the lab notebooks (`Task-1.ipynb`, `Task-2.ipynb`, `Task-3.ipynb`).
 
 ```bash
 git clone https://github.com/typex1/Agentic-AI-L300_20260718.git
-
+cd Agentic-AI-L300_20260718
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+curl -LsSf https://astral.sh/uv/install.sh | sh
+./1-remove-language-versions.sh
+# Add to PATH for current session
+export PATH="$HOME/.local/bin:$PATH"
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 curl -fsSL https://cli.kiro.dev/install | bash
 kiro-cli login --use-device-flow
 ```
@@ -17,12 +25,6 @@ kiro-cli login --use-device-flow
 
 ```bash
 ./0-install.sh          # installs uv/uvx + Python dependencies from requirements.txt
-```
-
-## Optional: remove non-English Jupyter notebook versions
-
-```bash
-./1-remove-language-versions.sh
 ```
 
 ## Examples
