@@ -7,6 +7,8 @@ covered in the lab notebooks (`Task-1.ipynb`, `Task-2.ipynb`, `Task-3.ipynb`).
 ## Kiro CLI installation
 
 ```bash
+git clone https://github.com/typex1/Agentic-AI-L300_20260718.git
+
 curl -fsSL https://cli.kiro.dev/install | bash
 kiro-cli login --use-device-flow
 ```
